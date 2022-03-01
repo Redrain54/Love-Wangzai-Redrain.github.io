@@ -1,0 +1,279 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>HTML、CSS、JS部分内容记录﻿ | Redrain's Blog</title><meta name="keywords" content="html,front end"><meta name="author" content="Redrain"><meta name="copyright" content="Redrain"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="Bytedance青训营上课笔记">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HTML、CSS、JS部分内容记录﻿">
+<meta property="og:url" content="http://yoursite.com/2022/01/18/HTML-CSS-JS-part/index.html">
+<meta property="og:site_name" content="Redrain&#39;s Blog">
+<meta property="og:description" content="Bytedance青训营上课笔记">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Redrain54/blogimg/cover/wz1.jpg">
+<meta property="article:published_time" content="2022-01-17T16:00:00.000Z">
+<meta property="article:modified_time" content="2022-03-01T14:55:19.751Z">
+<meta property="article:author" content="Redrain">
+<meta property="article:tag" content="html">
+<meta property="article:tag" content="front end">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/Redrain54/blogimg/cover/wz1.jpg"><link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/Redrain54/image/rain/redrain.png"><link rel="canonical" href="http://yoursite.com/2022/01/18/HTML-CSS-JS-part/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"作者: Redrain","link":"链接: ","source":"来源: Redrain's Blog","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'HTML、CSS、JS部分内容记录﻿',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-03-01 22:55:19'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    })(window)</script><meta name="generator" content="Hexo 5.4.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" src="https://cdn.jsdelivr.net/gh/Redrain54/image/rain/redrain.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">26</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">27</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">15</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://cdn.jsdelivr.net/gh/Redrain54/blogimg/cover/8.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Redrain's Blog</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">HTML、CSS、JS部分内容记录﻿<a class="post-edit-link" href="https://github.com/Redrain54/Redrain54.github.io/edit/master/source/_posts/HTML-CSS-JS-part.md" title="编辑" target="_blank"><i class="fas fa-pencil-alt"></i></a></h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-01-17T16:00:00.000Z" title="发表于 2022-01-18 00:00:00">2022-01-18</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-03-01T14:55:19.751Z" title="更新于 2022-03-01 22:55:19">2022-03-01</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/study/">study</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/study/front-end/">front end</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">1.7k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>5分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="HTML、CSS、JS部分内容记录﻿"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2 id="什么是前端？"><a href="#什么是前端？" class="headerlink" title="什么是前端？"></a>什么是前端？</h2><ul>
+<li>解决GUI人机交互问题（大概关注 功能、美观、性能、无障碍、安全、兼容这几个方面）</li>
+<li>跨终端<ul>
+<li>PC/移动浏览器</li>
+<li>客户端/小程序</li>
+<li>VR/AR等</li>
+</ul>
+</li>
+<li>Web技术栈（HTML-内容、CSS-样式 、JavaScript-行为、HTTP网络协议）</li>
+<li><strong>前端工程师</strong>就是使用Web技术栈解决多端图形用户界面交互的工程师</li>
+</ul>
+<h2 id="HTML相关"><a href="#HTML相关" class="headerlink" title="HTML相关"></a>HTML相关</h2><h3 id="1、-lt-DOCTYPE-html-gt-——文档类型。"><a href="#1、-lt-DOCTYPE-html-gt-——文档类型。" class="headerlink" title="1、&lt;!DOCTYPE html&gt;——文档类型。"></a>1、<code>&lt;!DOCTYPE html&gt;</code>——文档类型。</h3><p>混沌初分，HTML 尚在襁褓（大约是 1991/92 年）之时，<code>DOCTYPE</code> 用来链接一些 HTML 编写守则，比如自动查错之类。<code>DOCTYPE</code> 在当今作用有限，仅用于保证文档正常读取。现在知道这些就足够了。</p>
+<blockquote>
+<p>More: 标记了html的版本，浏览器会根据这个去决定使用哪种渲染模式。如若不写，浏览器会选择使用比较老旧、怪异的模式去渲染，从而产生不可预料的渲染结果。</p>
+</blockquote>
+<h3 id="2、属性值"><a href="#2、属性值" class="headerlink" title="2、属性值"></a>2、属性值</h3><p>推荐使用<strong>双引号</strong>包裹，但有一些属性值可以省略不写，如<code>required</code>、<code>readonly</code></p>
+<h3 id="3、列表"><a href="#3、列表" class="headerlink" title="3、列表"></a>3、列表</h3><p>有<code>ul</code>、<code>ol</code>、<code>dl</code>。分别是<strong>无序列表(Unordered List)</strong>、<strong>有序列表(Ordered List)</strong>、<strong>定义列表(Definition List)</strong>。前两个包括子标签<code>li</code>，即<strong>列表项(List Item)</strong>。第三个此前并未接触过，其包括了子标签<code>dt（定义列表中的项目）</code>和<code>dd（描述列表中的项目）</code>。</p>
+<blockquote>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">h2</span>&gt;</span>霸王别姬<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">dl</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dt</span>&gt;</span>导演：<span class="tag">&lt;/<span class="name">dt</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dd</span>&gt;</span>陈凯歌<span class="tag">&lt;/<span class="name">dd</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dt</span>&gt;</span>主演：<span class="tag">&lt;/<span class="name">dt</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dd</span>&gt;</span>张国荣<span class="tag">&lt;/<span class="name">dd</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dd</span>&gt;</span>张丰毅<span class="tag">&lt;/<span class="name">dd</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dd</span>&gt;</span>巩俐<span class="tag">&lt;/<span class="name">dd</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dt</span>&gt;</span>上映日期：<span class="tag">&lt;/<span class="name">dt</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dd</span>&gt;</span>1993-01-01<span class="tag">&lt;/<span class="name">dd</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">dl</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>效果如下图：</p>
+<div align="centetr"><img src="https://cdn.jsdelivr.net/gh/Redrain54/blogimg/data/hcj1.png"></div>
+</blockquote>
+<h3 id="4、video、audio标签"><a href="#4、video、audio标签" class="headerlink" title="4、video、audio标签"></a>4、<code>video</code>、<code>audio</code>标签</h3><p>H5新增了<code>video</code>、<code>audio</code>标签，可以直接配合<code>src</code>属性使用（注意要有<code>controls</code>属性以显示控件）：</p>
+<blockquote>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">video</span> <span class="attr">src</span>=<span class="string">&quot;/assets/HB.mp4&quot;</span> <span class="attr">controls</span>&gt;</span><span class="tag">&lt;/<span class="name">video</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">audio</span> <span class="attr">src</span>=<span class="string">&quot;/assets/audio.mp3&quot;</span> <span class="attr">controls</span>&gt;</span><span class="tag">&lt;/<span class="name">audio</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>执行效果如下图：</p>
+<div align="centetr"><img src="https://cdn.jsdelivr.net/gh/Redrain54/blogimg/data/hcj2.png"></div>
+</blockquote>
+<h3 id="5、引用标签"><a href="#5、引用标签" class="headerlink" title="5、引用标签"></a>5、<strong>引用标签</strong></h3><ul>
+<li><p><code>&lt;blockquote&gt;</code><strong>定义块引用（一般用于长引用）</strong>，标签之间的所有文本都会从常规文本中分离出来，经常会在左、右两边进行缩进（增加外边距），而且有时会使用斜体。也就是说，块引用拥有它们自己的空间。</p>
+</li>
+<li><p><code>&lt;cite&gt;</code>标签通常表示它所包含的文本对<strong>某个参考文献的引用</strong>，比如书籍或者杂志的标题。按照惯例，引用的文本将<strong>以斜体显示</strong>。</p>
+<p>用<code>&lt;cite&gt;</code>标签把指向其他文档的引用分离出来，尤其是分离那些传统媒体中的文档，如书籍、杂志、期刊，等等。如果引用的这些文档有联机版本，还应该把引用包括在一个 <code>&lt;a&gt;</code> 标签中，从而把一个超链接指向该联机版本。</p>
+<blockquote>
+<p><code>&lt;cite&gt;</code>标签还有一个隐藏的功能：它可以使你或者其他人从文档中自动摘录参考书目。我们可以很容易地想象一个浏览器，它能够自动整理引用表格，并把它们作为脚注或者独立的文档来显示。<code>&lt;cite&gt;</code>标签的语义已经远远超过了改变它所包含的文本外观的作用；它使浏览器能够以各种实用的方式来向用户表达文档的内容。</p>
+</blockquote>
+</li>
+<li><p><code>&lt;q&gt;</code><strong>定义短引用</strong>，浏览器一般会给标签内的内容加上双引号。</p>
+</li>
+</ul>
+<blockquote>
+<p><code>&lt;q&gt;</code>标签在本质上与 <code>&lt;blockquote&gt;</code>是一样的。不同之处在于它们的显示和应用。<code>&lt;q&gt;</code> 标签用于<strong>简短的行内引用</strong>。如果需要从周围内容分离出来<strong>比较长的部分</strong>（通常显示为缩进的块），请使用 <code>&lt;blockquote&gt;</code>标签。</p>
+</blockquote>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">blockquote</span>&gt;</span>你好哇李银河。今天又写信给你。我一点也不知道你在干什么，所以就不能谈论你的工作。那么怎么办呢？还是来谈论我自己。这太乏味了。我自觉有些厚颜，一点也听不到你的回答，坐在这里唠叨。<span class="tag">&lt;/<span class="name">blockquote</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>我最近在看<span class="tag">&lt;<span class="name">cite</span>&gt;</span>《倚天屠龙记》<span class="tag">&lt;/<span class="name">cite</span>&gt;</span>这本书<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>里面开头的诗是这么形容小龙女的：<span class="tag">&lt;<span class="name">q</span>&gt;</span>浑似姑射真人，天姿灵秀，意气殊高洁。<span class="tag">&lt;/<span class="name">q</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<div align="centetr"><img src="https://cdn.jsdelivr.net/gh/Redrain54/blogimg/data/hcj3.png"></div>
+
+<center>执行效果</center>
+
+<h3 id="6、-lt-code-gt-标签"><a href="#6、-lt-code-gt-标签" class="headerlink" title="6、&lt;code&gt;标签"></a>6、<code>&lt;code&gt;</code>标签</h3><p>常用于插入计算机文本，也即在表示代码文本时可以使用此标签，配合<code>&lt;pre&gt;</code>标签可以实现多行的代码文本。被包围在 <code>pre</code> 元素中的文本通常会保留空格和换行符。而文本也会呈现为等宽字体。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">code</span>&gt;</span>const<span class="tag">&lt;/<span class="name">code</span>&gt;</span>定义一个常量</span><br><span class="line"><span class="tag">&lt;<span class="name">pre</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">code</span>&gt;</span></span><br><span class="line">    const redrain = &quot;I am Redrain.&quot;</span><br><span class="line">    var Redrain = &quot;Welcome to my blog!&quot; </span><br><span class="line">  <span class="tag">&lt;/<span class="name">code</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">pre</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<div align="centetr"><img src="https://cdn.jsdelivr.net/gh/Redrain54/blogimg/data/hcj4.png"></div>
+
+<h3 id="7、内容整体划分的标签（以下全为h5新增标签）"><a href="#7、内容整体划分的标签（以下全为h5新增标签）" class="headerlink" title="7、内容整体划分的标签（以下全为h5新增标签）"></a>7、<strong>内容整体划分的标签（以下全为h5新增标签）</strong></h3><ul>
+<li><p><code>&lt;header&gt;</code>：注意与<code>&lt;head&gt;</code>进行区分，这是一个定义文档页眉（介绍信息）的标签，一般包括导航栏、logo图片等内容</p>
+</li>
+<li><p><code>&lt;nav&gt;</code>即导航标签</p>
+</li>
+<li><p><code>&lt;main&gt;</code>标签规定文档的主要内容。其内容对于文档来说<strong>应当是唯一的</strong>。它不应包含在文档中重复出现的内容，比如侧栏、导航栏、版权信息、站点标志或搜索表单。</p>
+<blockquote>
+<p>在一个文档中，不能出现一个以上的 <main> 元素。<main> 元素不能是以下元素的后代：<article>、<aside>、<footer>、<header> 或 <nav>。</p>
+</blockquote>
+</li>
+<li><p><code>&lt;article&gt;</code>标签规定独立的自包含内容。其潜在来源包括论坛帖子、报纸文章、博客条目、用户评论等。</p>
+</li>
+<li><p><code>&lt;aside&gt;</code>标签定义其所处内容之外的内容。其内容应该与附近的内容相关。可用作文章的侧栏，比如<strong>推荐文章</strong>等</p>
+</li>
+<li><p><code>&lt;footer&gt;</code>标签定义文档或节的页脚。页脚通常包含文档的作者、版权信息、使用条款链接、联系信息等等。可以在一个文档中使用多个<footer>元素</p>
+</li>
+</ul>
+<h3 id="8、语义化是什么？"><a href="#8、语义化是什么？" class="headerlink" title="8、语义化是什么？"></a>8、语义化是什么？</h3><ul>
+<li>HTML中的元素、属性及属性值都拥有某些含义</li>
+<li>开发者应该遵循语义来编写HTML<ul>
+<li>有序列表用<code>ol</code>，无序列表用<code>ul</code></li>
+<li><code>lang</code>属性表示内容所使用的语言</li>
+</ul>
+</li>
+</ul>
+<h3 id="9、HTML传达内容，而不是样式"><a href="#9、HTML传达内容，而不是样式" class="headerlink" title="9、HTML传达内容，而不是样式"></a>9、HTML传达内容，而不是样式</h3><h3 id="10、如何做到语义化？"><a href="#10、如何做到语义化？" class="headerlink" title="10、如何做到语义化？"></a>10、如何做到语义化？</h3><ul>
+<li>了解每个标签和属性的含义（推荐阅读<a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element">MDN文档</a>）</li>
+<li>思考什么标签最适合描述这个内容</li>
+<li>不使用可视化工具生成代码</li>
+</ul>
+<h3 id="11、src和href的区别"><a href="#11、src和href的区别" class="headerlink" title="11、src和href的区别"></a>11、<code>src</code>和<code>href</code>的区别</h3><p>一般直接引用嵌入页面当中的用<code>src</code>，比如图片、音视频，而引用外部的链接会用<code>href</code>（hypertext referrence），比如<code>&lt;a&gt;</code>标签、引用css文件的标签等。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a target="_blank" rel="noopener" href="https://redrain54.github.io">Redrain</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a target="_blank" rel="noopener" href="https://redrain54.github.io/2022/01/18/HTML-CSS-JS-part/">https://redrain54.github.io/2022/01/18/HTML-CSS-JS-part/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">此文章版權歸Redrain所有，如有轉載，請註明來自原作者</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/html/">html</a><a class="post-meta__tags" href="/tags/front-end/">front end</a></div><div class="post_share"><div class="social-share" data-image="https://cdn.jsdelivr.net/gh/Redrain54/blogimg/cover/wz1.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button button--animated"><i class="fas fa-qrcode"></i> 打赏</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/wechat.png" target="_blank"><img class="post-qr-code-img" src="/img/wechat.png" alt="wechat"/></a><div class="post-qr-code-desc">wechat</div></li><li class="reward-item"><a href="/img/alipay.png" target="_blank"><img class="post-qr-code-img" src="/img/alipay.png" alt="alipay"/></a><div class="post-qr-code-desc">alipay</div></li></ul></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/2022/01/17/HTTP/"><img class="next-cover" src="https://cdn.jsdelivr.net/gh/Redrain54/blogimg/data/HTTP1.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">HTTP相关内容</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span> 相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2021/11/02/react_learning1/" title="React开发基础﻿"><img class="cover" src="https://cdn.jsdelivr.net/gh/Redrain54/blogimg/cover/logo512.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-11-02</div><div class="title">React开发基础﻿</div></div></a></div><div><a href="/2021/11/11/react_extension/" title="React扩展"><img class="cover" src="https://cdn.jsdelivr.net/gh/Redrain54/blogimg/cover/logo512.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-11-11</div><div class="title">React扩展</div></div></a></div><div><a href="/2021/11/18/react_learning2/" title="React踩坑之道"><img class="cover" src="https://cdn.jsdelivr.net/gh/Redrain54/blogimg/cover/logo512.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-11-18</div><div class="title">React踩坑之道</div></div></a></div><div><a href="/2021/06/28/wechat_miniapp/" title="微信小程序学习笔记（1）﻿"><img class="cover" src="https://cdn.jsdelivr.net/gh/Redrain54/blogimg/cover/wechat.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-06-28</div><div class="title">微信小程序学习笔记（1）﻿</div></div></a></div><div><a href="/2021/07/12/wechat_miniapp4/" title="微信小程序学习笔记（4）﻿"><img class="cover" src="https://cdn.jsdelivr.net/gh/Redrain54/blogimg/cover/wechat.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-07-12</div><div class="title">微信小程序学习笔记（4）﻿</div></div></a></div><div><a href="/2021/07/07/wechat_miniapp2_component/" title="微信小程序学习笔记（2）——组件之间的交互（自定义与组件库）﻿"><img class="cover" src="https://cdn.jsdelivr.net/gh/Redrain54/blogimg/cover/wechat.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-07-07</div><div class="title">微信小程序学习笔记（2）——组件之间的交互（自定义与组件库）﻿</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E5%89%8D%E7%AB%AF%EF%BC%9F"><span class="toc-number">1.</span> <span class="toc-text">什么是前端？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HTML%E7%9B%B8%E5%85%B3"><span class="toc-number">2.</span> <span class="toc-text">HTML相关</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1%E3%80%81-lt-DOCTYPE-html-gt-%E2%80%94%E2%80%94%E6%96%87%E6%A1%A3%E7%B1%BB%E5%9E%8B%E3%80%82"><span class="toc-number">2.1.</span> <span class="toc-text">1、&lt;!DOCTYPE html&gt;——文档类型。</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2%E3%80%81%E5%B1%9E%E6%80%A7%E5%80%BC"><span class="toc-number">2.2.</span> <span class="toc-text">2、属性值</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3%E3%80%81%E5%88%97%E8%A1%A8"><span class="toc-number">2.3.</span> <span class="toc-text">3、列表</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4%E3%80%81video%E3%80%81audio%E6%A0%87%E7%AD%BE"><span class="toc-number">2.4.</span> <span class="toc-text">4、video、audio标签</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5%E3%80%81%E5%BC%95%E7%94%A8%E6%A0%87%E7%AD%BE"><span class="toc-number">2.5.</span> <span class="toc-text">5、引用标签</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6%E3%80%81-lt-code-gt-%E6%A0%87%E7%AD%BE"><span class="toc-number">2.6.</span> <span class="toc-text">6、&lt;code&gt;标签</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7%E3%80%81%E5%86%85%E5%AE%B9%E6%95%B4%E4%BD%93%E5%88%92%E5%88%86%E7%9A%84%E6%A0%87%E7%AD%BE%EF%BC%88%E4%BB%A5%E4%B8%8B%E5%85%A8%E4%B8%BAh5%E6%96%B0%E5%A2%9E%E6%A0%87%E7%AD%BE%EF%BC%89"><span class="toc-number">2.7.</span> <span class="toc-text">7、内容整体划分的标签（以下全为h5新增标签）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8%E3%80%81%E8%AF%AD%E4%B9%89%E5%8C%96%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="toc-number">2.8.</span> <span class="toc-text">8、语义化是什么？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#9%E3%80%81HTML%E4%BC%A0%E8%BE%BE%E5%86%85%E5%AE%B9%EF%BC%8C%E8%80%8C%E4%B8%8D%E6%98%AF%E6%A0%B7%E5%BC%8F"><span class="toc-number">2.9.</span> <span class="toc-text">9、HTML传达内容，而不是样式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#10%E3%80%81%E5%A6%82%E4%BD%95%E5%81%9A%E5%88%B0%E8%AF%AD%E4%B9%89%E5%8C%96%EF%BC%9F"><span class="toc-number">2.10.</span> <span class="toc-text">10、如何做到语义化？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#11%E3%80%81src%E5%92%8Chref%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-number">2.11.</span> <span class="toc-text">11、src和href的区别</span></a></li></ol></li></ol></div></div></div></div></main><footer id="footer" style="background-image: url('https://cdn.jsdelivr.net/gh/Redrain54/blogimg/cover/8.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2021 - 2022 By Redrain</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script>var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',preloader.endLoading())</script><div class="js-pjax"><script>function loadValine () {
+  function initValine () {
+    const valine = new Valine(Object.assign({
+      el: '#vcomment',
+      appId: '',
+      appKey: '',
+      placeholder: 'Please leave your footprints',
+      avatar: 'monsterid',
+      meta: 'nick,mail,link'.split(','),
+      pageSize: '10',
+      lang: 'en',
+      recordIP: false,
+      serverURLs: '',
+      emojiCDN: '',
+      emojiMaps: "",
+      enableQQ: false,
+      path: window.location.pathname,
+      requiredFields: ["nick,mail"],
+      visitor: false
+    }, null))
+  }
+
+  if (typeof Valine === 'function') initValine() 
+  else getScript('https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js').then(initValine)
+}
+
+if ('Valine' === 'Valine' || !false) {
+  if (false) btf.loadComment(document.getElementById('vcomment'),loadValine)
+  else setTimeout(loadValine, 0)
+} else {
+  function loadOtherComment () {
+    loadValine()
+  }
+}</script></div><canvas class="fireworks" mobile="false"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/fireworks.min.js"></script><script defer="defer" id="fluttering_ribbon" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-fluttering-ribbon.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = true;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

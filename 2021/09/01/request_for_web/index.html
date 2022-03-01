@@ -1,0 +1,248 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Web页面的请求历程（计算机网络基础知识）﻿ | Redrain's Blog</title><meta name="keywords" content="network protocol,computer network"><meta name="author" content="Redrain"><meta name="copyright" content="Redrain"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="归纳记录用户如何通过应用层、运输层、网络层、链路层请求到web页面（自上而下，最底下还有一个物理层）">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Web页面的请求历程（计算机网络基础知识）﻿">
+<meta property="og:url" content="http://yoursite.com/2021/09/01/request_for_web/index.html">
+<meta property="og:site_name" content="Redrain&#39;s Blog">
+<meta property="og:description" content="归纳记录用户如何通过应用层、运输层、网络层、链路层请求到web页面（自上而下，最底下还有一个物理层）">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Redrain54/blogimg/cover/cn.jpg">
+<meta property="article:published_time" content="2021-08-31T16:00:00.000Z">
+<meta property="article:modified_time" content="2021-09-27T15:58:19.860Z">
+<meta property="article:author" content="Redrain">
+<meta property="article:tag" content="network protocol">
+<meta property="article:tag" content="computer network">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/Redrain54/blogimg/cover/cn.jpg"><link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/Redrain54/image/rain/redrain.png"><link rel="canonical" href="http://yoursite.com/2021/09/01/request_for_web/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"作者: Redrain","link":"链接: ","source":"来源: Redrain's Blog","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Web页面的请求历程（计算机网络基础知识）﻿',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2021-09-27 23:58:19'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    })(window)</script><meta name="generator" content="Hexo 5.4.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" src="https://cdn.jsdelivr.net/gh/Redrain54/image/rain/redrain.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">26</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">27</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">15</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://cdn.jsdelivr.net/gh/Redrain54/blogimg/cover/8.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Redrain's Blog</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Web页面的请求历程（计算机网络基础知识）﻿<a class="post-edit-link" href="https://github.com/Redrain54/Redrain54.github.io/edit/master/source/_posts/request_for_web.md" title="编辑" target="_blank"><i class="fas fa-pencil-alt"></i></a></h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-08-31T16:00:00.000Z" title="发表于 2021-09-01 00:00:00">2021-09-01</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-09-27T15:58:19.860Z" title="更新于 2021-09-27 23:58:19">2021-09-27</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/study/">study</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/study/computer-network/">computer network</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">5k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>16分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="Web页面的请求历程（计算机网络基础知识）﻿"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="前置知识：自上而下的协议分层"><a href="#前置知识：自上而下的协议分层" class="headerlink" title="前置知识：自上而下的协议分层"></a>前置知识：自上而下的协议分层</h1><div align="center"><img src="https://cdn.jsdelivr.net/gh/Redrain54/blogimg/cover/cn.jpg" /></div>
+
+<h3 id="应用层"><a href="#应用层" class="headerlink" title="应用层"></a>应用层</h3><p>应用层是网络应用程序及他们的应用层协议存留的地方。因特网的应用层包括许多协议，例如HTTP（它提供了Web文档的请求和传送）、SMTP（它提供了电子邮件报文的传送）和FTP（它提供两个端系统之间的文件传送）。某些网络功能，如将像whu.edu.cn这样对人友好的端系统名字转换为32比特的网络地址，也是借助于特定的应用层协议即域名系统（DNS）完成的。</p>
+<p>应用层协议分布在多个端系统上，而一个端系统中的应用程序使用协议与另一个端系统中的应用程序交换信息分组。我们把这种位于应用层的信息分组成为<mark>报文（message）</mark>。</p>
+<h3 id="运输层"><a href="#运输层" class="headerlink" title="运输层"></a>运输层</h3><p>因特网的运输层在应用程序端点之间传送应用层报文。在因特网中，有两种运输层协议，即TCP和UDP，利用其中的任一个都能运输应用层报文。TCP向它的应用程序提供了面向连接的服务。这种服务包括了应用层报文向目的地的确保传递和流量控制（即发送方/接受方速率匹配）。TCP也将长报文划分为短报文，并提供拥塞控制机制，因此当网络拥塞时，源抑制其传输速率。UDP协议向它的应用程序提供无连接服务。这是一种不提供不必要服务的服务，没有可靠性，没有流量控制，也没有拥塞控制。我们把运输层的分组成为<mark>报文段（segment）</mark>。</p>
+<h3 id="网络层"><a href="#网络层" class="headerlink" title="网络层"></a>网络层</h3><p>因特网的网络层负责将称为<mark>数据报（datagram）</mark>的网络层分组从一台主机移动到另一台主机。在一台源主机中的因特网运输层协议（TCP或UDP）想网络层递交运输层报文段和目的地址，就像你通过邮政服务寄信件时提供一个目的地址一样。</p>
+<p>因特网的网络层包括著名的网际协议IP，该协议定了在数据报中的各个字段以及端系统和路由器如何作用于这些字段。IP仅有一个，所有具有网络层的因特网组件必须运行IP。因特网的网络层也包括决定路由的路由选择协议，它根据该路由将数据报从源传输到目的地。因特网具有许多路由选择协议。因特网是一个网络的网络，并且在一个网络中，其网络管理者能够运行所希望的任何路由选择协议。尽管网络层包括了网际协议和一些路由选择协议，但通常把它简单地称为IP层，这反映了IP是将因特网连接在一起的粘合剂这样的事实。</p>
+<h3 id="链路层"><a href="#链路层" class="headerlink" title="链路层"></a>链路层</h3><p>因特网的网络层通过源和目的地之间的一系列路由器路由数据报。为了将分组从一个节点（主机或是路由器）移动到路径上的下一个节点，网络层必须依靠链路层的服务。特别是在每个节点，网络层将数据报下传给连路层，链路层沿着路径将数据包传递给下一个节点。在该下一个节点，链路层将数据报上传给网络层。</p>
+<p>由链路层提供的服务取决于应用于该链路的特定链路层协议。例如，某些协议基于链路提供可靠传递，从传输节点跨越一条链路到接收节点。只得注意的是，这种可靠地传递服务不同于TCP的可靠传输服务，TCP提供从一个端系统到另一个端系统的可靠交付。链路层的例子包括以太网、WiFi和电缆接入网的DOCSIS协议。因为数据报从源到目的地传送通常需要经过几条链路，一个数据报可能被沿途不同链路上的不同链路层协议处理。例如，一个数据报可能被一段链路上的以太网和下一段链路上的PPP所处理。网络层将受到来自每个不同的链路层协议的不同服务。我们把链路层分组称为<mark>帧（frame）</mark>。</p>
+<h3 id="物理层"><a href="#物理层" class="headerlink" title="物理层"></a>物理层</h3><p>虽然链路层的任务是将整个帧从一个网络元素移动到邻近的网络元素，而物理层的任务是将该帧中的一个个比特从一个节点移动到下一个节点。在这层中的协议仍然是链路相关的，并且进一步与该链路（例如，双绞铜线、单模光纤）的实际传输媒体相关。例如，以太网具有许多物理层协议：一个是关于双绞铜线的，另一个是关于同轴电缆的，还有一个是关于光纤的，等等。在每种场合中，跨越这些链路移动一个比特是以不同的方式进行的。</p>
+<hr>
+
+<h1 id="准备：DHCP、UDP、IP以及以太网"><a href="#准备：DHCP、UDP、IP以及以太网" class="headerlink" title="准备：DHCP、UDP、IP以及以太网"></a>准备：DHCP、UDP、IP以及以太网</h1><blockquote>
+<p>背景介绍：</p>
+<p><b>DHCP</b>（Dynamic Host Configuration Protocol）是动态主机配置协议：某组织一旦获得了一块地址，它就可以为本组织内的主机与路由器接口逐个分配IP地址。系统管理员通常手动配置路由器中的IP地址。主机地址也可以手动配置，但是这项任务目前更多的是使用DHCP来完成。DHCP允许主机自动获取一个IP地址。<b>它也常被称为即插即用协议（plug-and-play protocol）或者零配置（zeroconf）</b></p>
+<p><b>UDP</b>（User Datagram Protocol）是用户数据报协议：它为调用它的程序提供一种不可靠（unreliable）、无连接（unordered）的运输服务，也即它是一个运输层的协议。它只提供进程到进程的数据交付和差错检查这两种最低限度的运输层服务。此外，UDP不同于TCP，使用UDP发送报文段之前，发送方和接收方的运输层实体之间没有握手（因此UDP被称为是无连接的）</p>
+</blockquote>
+<p>&emsp;&emsp;<font face="仿宋" size=4>我们假定Redrain启动他的便携机，然后将其用一根以太网电缆连接到学校的以太网交换机，交换机又与学校的路由器相连，如图所示。学校的这台路由器与一个ISP（Internet Service Provider）连接，本例中ISP为comcast.net。在本例中，comcast.net为学校提供了DNS服务；所以，DNS服务器驻留在Comcast网络中而不是学校网络中。我们将假设DHCP服务器运行在路由器中，就像常见情况那样。</font> </p>
+<div align="center"><img src="https://cdn.jsdelivr.net/gh/Redrain54/blogimg/data/cn1.jpg" /></div>
+
+<p>&emsp;&emsp;<font face="仿宋" size=4>当Redrain首先将其便携机与网络连接时，没有IP地址，它就不能做任何事情（例如下载一个web网页）。所以Redrain的便携机所采取的一个网络相关的动作是运行DHCP协议，以从本地DHCP服务器获得一个IP地址以及其他信息</font></p>
+<p>&emsp;&emsp;<font face="仿宋" size=4>1)Redrain便携机上的操作系统生成一个DHCP请求报文，并将这个报文放入具有目的端口67（DHCP服务器）和源端口68（DHCP客户）的UDP报文段。该UDP报文段则被放置在一个具有广播IP目的地址（255.255.255.255）和源IP地址（0.0.0.0）的IP数据报中，因为Redrain的便携机还没有一个IP地址</font></p>
+<p>&emsp;&emsp;<font face="仿宋" size=4>2)包含DHCP请求报文的IP数据报则被放置在以太网帧中。该以太网帧具有目的MAC地址FF:FF:FF:FF:FF:FF,使该帧将广播到与交换机连接的所有设备（如果顺利的话也包括DHCP服务器）；该帧的源MAC地址是Redrain便携机的MAC地址00:16:D3:23:68:8A。</font></p>
+<p>&emsp;&emsp;<font face="仿宋" size=4>3)包含DHCP请求的广播以太网帧是第一个由Redrain便携机发送到以太网交换机的帧。该交换机在所有的出端口广播入帧，包括连接到路由器的端口。</font></p>
+<p>&emsp;&emsp;<font face="仿宋" size=4>4)路由器在它的具有MAC地址00:22:6B:45:1F的接口接收到该广播以太网帧，该帧中包含DHCP请求，并且从该以太网帧中抽取出IP数据报.该数据报的广播IP目的地址指示了这个IP数据报应当由在该节点的高层协议处理,因此该数据报的载荷(一个UDP报文段)被分解，向上到达UDP，DHCP请求报文从此UDP报文段中抽取出来。此时DHCP服务器有了DHCP请求报文.</font></p>
+<p>&emsp;&emsp;<font face="仿宋" size=4>5)我们假设运行在路由器中的DHCP服务器能够以CIDR块。68.86.2.0/24分配IP地址.所以本例中。在学校内使用的所有IP地址都在Comcast的地址块中。我们假设DHCP服务器分配地址68.85.2.101给Redrain的便携机。DHCP服务器生成包含这个IP地址以及DNS服务器的IP地址(58.87.71.226)、默认网关路由器的IP地址(68.85.2.1)和子网块(68.85.2.0/24)(等价于“网络掩码”)的一个DHCP ACK报文。该DHCP报文被放入一个UDP报文段中，UDP报文段被放入一个IP数据报中，IP数据报再被放入一个以太网帧中。这个以太网帧的源MAC地址是路由器连到归属网络时接口的MAC地址（00:22:6B:45:1F:1B），目的MAC地址是Redrain便携机的MAC地址（00:16:D3:23:68:8A）。</font></p>
+<p>&emsp;&emsp;<font face="仿宋" size=4>6)包含DHCP ACK的以太网帧由路由器发送给交换机。因为交换机是自学习(self-learning)的，并且先前从Redrain的便携机收到（包含DHCP请求的）以太网帧，所以该交换机知道寻址到00:16:D3:23:68:8A的帧仅从通向Redrain便携机的输出端口转发。</font></p>
+<p>&emsp;&emsp;<font face="仿宋" size=4>7)Redrain便携机接收到包含DHCP ACK的以太网帧，从该以太网帧中抽取IP数据报，从IP数据报中抽取UDP报文段，从UDP报文段抽取DHCP ACK报文。Redrain的DHCP客户则记录下它的IP地址和它的DNS服务器的IP地址。它还在其IP转发表中安装默认网关的地址。Redrain便携机将向该默认网关发送目的地址为其子网68.85.2.0/24以外的所有数据报。此时，Redrain便携机已经初始化好它的网络组件，并准备开始处理Web网页获取。</font></p>
+<h1 id="仍在准备：DNS和ARP"><a href="#仍在准备：DNS和ARP" class="headerlink" title="仍在准备：DNS和ARP"></a>仍在准备：DNS和ARP</h1><blockquote>
+<p>背景介绍：</p>
+<p>DNS(Domain Name System)即域名系统，通常是由其他应用层协议所使用的，包括HTTP、SMTP和FTP，将用户提供的主机名解析为IP地址。</p>
+<p>ARP(Address Resolution Protocol)即地址解析协议，是根据IP地址获取物理地址的一个TCP/IP协议。主机发送信息时将包含目标IP地址的ARP请求广播到局域网络上的所有主机，并接收返回消息，以此确定目标的物理地址；收到返回消息后将该IP地址和物理地址存入本机ARP缓存中并保留一定时间，下次请求时直接查询ARP缓存以节约资源。地址解析协议是建立在网络中各个主机互相信任的基础上的，局域网络上的主机可以自主发送ARP应答消息，其他主机收到应答报文时不会检测该报文的真实性就会将其记入本机ARP缓存；由此攻击者就可以向某一主机发送伪ARP应答报文，使其发送的信息无法到达预期的主机或到达错误的主机，这就构成了一个ARP欺骗。</p>
+</blockquote>
+<p>&emsp;&emsp;<font face="仿宋" size=4>当Redrain将<code>www.baidu.com</code>的URL键入其Web浏览器时，他开启了一长串事件，这将导致百度主页最终显示在其Web浏览器上。Redrain的Web浏览器通过生成一个<b>TCP套接字</b>开始了该过程，套接字用于向<code>www.baidu.com</code>发送<b>HTTP请求</b>。为了生成该套接字，Redrain便携机将需要知道<code>www.baidu.com</code>的IP地址。这就需要使用DNS协议提供这种名字到IP地址的转换服务。</font></p>
+<p>&emsp;&emsp;<font face="仿宋" size=4>8)Redrain便携机上的操作系统因此生成一个DNS查询报文，将字符串<code>www.baidu.com</code>放入DNS报文的问题段中。该DNS报文则放置在一个具有53号（DNS服务器)目的端口的UDP报文段中。该UDP报文段则被放入具有IP目的地址68.87.71.226(在第5步中DHCP ACK返回的DNS服务器地址)和源IP地址68.85.2.101的IP数据报中。</font></p>
+<p>&emsp;&emsp;<font face="仿宋" size=4>9)Redrain便携机则将包含DNS请求报文的数据报放入一个以太网帧中。该帧将发送（在链路层寻址）到Redrain学校网络中的网关路由器。然而，即使Redrain便携机经过上述第5步中的DHCP ACK报文知道了学校网关路由器的IP地址（68.85.2.1），但仍不知道该网关路由器的MAC地址。为了获得该网关路由器的MAC地址，Redrain便携机将需要使用<b>ARP协议</b>。</font></p>
+<p>&emsp;&emsp;<font face="仿宋" size=4>10)Redrain便携机生成了一个具有目的IP地址68.85.2.1（默认网关）的<b>ARP查询报文</b>，将该ARP报文放置在一个具有广播目的地址（FF:FF:FF:FF:FF:FF)的以太网帧中，并向交换机发送该以太网帧，交换机将该帧交付给所有连接的设备，包括网关路由器。</font></p>
+<p>&emsp;&emsp;<font face="仿宋" size=4>11)网关路由器在通往学校网络的接口上接收到包含该ARP查询报文的帧，发现在ARP报文中目标IP地址68.85.2.1匹配其接口的IP地址。网关路由器因此准备一个<b>ARP回答</b>，指示它的MAC地址00:22:6B:45:1F:1B对应的IP地址68.85.2.1。它将ARP回答放在一个以太网帧中，将目的地址为00:16:D3:23:68:8A（Redrain便携机），并向交换机发送该帧，再由交换机将帧交付给Redrain便携机。</font></p>
+<p>&emsp;&emsp;<font face="仿宋" size=4>12)Redrain便携机接收包含ARP回答报文的帧，并从ARP回答报文中抽取网关路由器的MAC地址(00:22:6B:45:1F:1B)。</font></p>
+<p>&emsp;&emsp;<font face="仿宋" size=4>13)Redrain便携机现在（最终！）能够使包含DNS查询的以太网帧寻址到网关路由器的MAC地址。注意到在该帧中的IP数据报具有IP目的地址68.87.71.226（DNS服务器），而该帧具有目的地址00:22:6B:45:1F:1B（网关路由器）。Redrain便携机向交换机发送该帧，交换机将该帧交付给网关路由器。</font></p>
+<h1 id="仍在准备：域内路由选择到DNS服务器"><a href="#仍在准备：域内路由选择到DNS服务器" class="headerlink" title="仍在准备：域内路由选择到DNS服务器"></a>仍在准备：域内路由选择到DNS服务器</h1><p>&emsp;&emsp;<font face="仿宋" size=4>14)网关路由器接收该帧并抽取包含DNS查询的IP数据报。路由器查找该数据报的目的地址（68.87.71.226），并根据其转发表决定该数据报应当发送到图中对的Comcast网络中最左边的路由器。IP数据报放置在链路层帧中，该链路适合将学校路由器连接到最左边Comcast路由器，并且该帧经过这条链路发送。</font></p>
+<p>&emsp;&emsp;<font face="仿宋" size=4>15)在Comcast网络中最左边的路由器接收到该帧，抽取IP数据报，检查该数据报的目的地址（68.87.71.226），并根据其转发表确定出接口，经过该接口朝着DNS服务器转发数据报，而转发表已根据Comcast的域内协议（如RIP、OSPF或IS-IS）一级<b>因特网的域间协议BGP</b>所填写</font></p>
+<p>&emsp;&emsp;<font face="仿宋" size=4>16)最终包含DNS查询的IP数据报到达了DNS服务器。DNS服务器抽取出DNS查询报文，在它的DNS数据库中查找名字<code>www.baidu.com</code>，找到包含对应<code>www.baidu.com</code>的IP地址的DNS源记录。（假设它当前缓存在DNS的服务器中。）前面讲过这种缓存数据源于baidu.com的权威DNS服务器。该DNS服务器形成了一个包含这种主机名到IP地址映射的DNS回答报文，将该DNS回答报文放入UDP报文段中，该报文段放入寻址到Redrain便携机的IP数据报中。该数据报将通过Comcast网络反向转发到学校的路由器，并从这里经过以太网交换机到Redrain便携机。</font></p>
+<p>&emsp;&emsp;<font face="仿宋" size=4>17)Redrain便携机从DNS报文抽取出服务器<a target="_blank" rel="noopener" href="http://www.baidu,com的IP地址。最终，在大量工作后，Redrain便携机此时准备接触`www.baidu.com`服务器！">www.baidu,com的IP地址。最终，在大量工作后，Redrain便携机此时准备接触`www.baidu.com`服务器！</a></font></p>
+<h1 id="Web客户-服务器交互：TCP和HTTP"><a href="#Web客户-服务器交互：TCP和HTTP" class="headerlink" title="Web客户-服务器交互：TCP和HTTP"></a>Web客户-服务器交互：TCP和HTTP</h1><p>&emsp;&emsp;<font face="仿宋" size=4>18)既然Redrain便携机有了<code>www.baidu.com</code>的IP地址，它能够生成<b>TCP套接字</b>，该套接字将用于向<code>www.baidu.com</code>发送<b>HTTP GET报文</b>。当Redrain生成TCP套接字时，在Redrain便携机中的TCP必须首先与<code>www.baidu.com</code>中的TCP执行<b>三次握手</b>。Redrain便携机因此首先生成一个具有目的端口80（针对HTTP的）的<b>TCP SYN</b>报文段，将该TCP报文段放置在具有目的IP地址64.233.169.105（<code>www.baidu.com</code>)的IP数据报中，将该数据报放置在MAC地址为00:22:6B:45:1F:1B（网关路由器）的帧中，并向交换机发送该帧。</font></p>
+<p>&emsp;&emsp;<font face="仿宋" size=4>19)在学校网络中，Comcast网络和百度网络中的路由器朝着<code>www.baidu.com</code>转发包含TCP SYN的数据报，使用每台路由器中的转发表，如前面步骤14-16那样。前面讲过支配分组经Comcast和谷歌网络之间域间链路转发的路由器转发表项，是由BGP协议决定的。</font></p>
+<p>&emsp;&emsp;<font face="仿宋" size=4>20)最终，包含TCP SYN的数据报到达<code>www.baidu.com</code>。从数据报抽取出TCP SYN报文并分解到与端口80相联系的欢迎套接字。对于百度HTTP服务器和Redrain便携机之间的TCP连接生成一个连接套接字。产生一个TCP SYNACK报文段，将其放入向Redrain便携机寻址的一个数据报中，最后放入链路层帧中，该链路适合将<code>www.baidu.com</code>连接到其第一跳路由器。</font></p>
+<p>&emsp;&emsp;<font face="仿宋" size=4>21)包含TCP SYNACK报文段的数据报通过百度、Comcast和学校网络，最终到达Redrain便携机的以太网卡。数据报在操作系统中分解到步骤18生成的TCP套接字，从而进入连接状态。</font></p>
+<p>&emsp;&emsp;<font face="仿宋" size=4>22)借助于Redrain便携机上的套接字，现在（终于）准备向<code>www.baidu.com</code>发送字节了，Redrain的浏览器生成包含要获取的URL的HTTP GET报文。HTTP GET报文则写入套接字，其中GET报文成为一个TCP报文段的载荷。该TCP报文段放置进一个数据报中，并交付到<code>www.baidu.com</code>，如前面步骤18-20所述。</font></p>
+<p>&emsp;&emsp;<font face="仿宋" size=4>23)在<code>www.baidu.com</code>的HTTP服务器从TCP套接字读取HTTP GET报文，生成一个<b>HTTP响应报文</b>，将请求的Web页内容放入HTTP响应体中，并将报文发送进TCP套接字中。</font></p>
+<p>&emsp;&emsp;<font face="仿宋" size=4>24)包含HTTP回答报文的数据报通过百度、Concast和学校网络转发，到达Redrain便携机。Redrain的Web浏览器程序从套接字读取HTTP响应，从HTTP响应体中抽取Web网页的html，并最终显示了Web网页。</font></p>
+<h1 id="响应报文中的状态码"><a href="#响应报文中的状态码" class="headerlink" title="响应报文中的状态码"></a>响应报文中的状态码</h1><p><b>200 OK</b>：请求成功，信息在返回的响应报文中。</p>
+<p><b>301 Move Permanently</b>：请求的对象已经被永久转移了，新的URL定义在相应报文的Location：首部行中、客户软件将自动获取新的URL</p>
+<p><b>400 Bad Request</b>：一个通用的差错代码，指示该请求不能被服务器理解</p>
+<p><b>404 Not Found</b>：被请求的文档不在服务器上</p>
+<p><b>500 HTTP Version Not Supported</b>：服务器不支持请求报文使用的HTTP协议版本</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a target="_blank" rel="noopener" href="https://redrain54.github.io">Redrain</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a target="_blank" rel="noopener" href="https://redrain54.github.io/2021/09/01/request_for_web/">https://redrain54.github.io/2021/09/01/request_for_web/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">此文章版權歸Redrain所有，如有轉載，請註明來自原作者</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/network-protocol/">network protocol</a><a class="post-meta__tags" href="/tags/computer-network/">computer network</a></div><div class="post_share"><div class="social-share" data-image="https://cdn.jsdelivr.net/gh/Redrain54/blogimg/cover/cn.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button button--animated"><i class="fas fa-qrcode"></i> 打赏</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/wechat.png" target="_blank"><img class="post-qr-code-img" src="/img/wechat.png" alt="wechat"/></a><div class="post-qr-code-desc">wechat</div></li><li class="reward-item"><a href="/img/alipay.png" target="_blank"><img class="post-qr-code-img" src="/img/alipay.png" alt="alipay"/></a><div class="post-qr-code-desc">alipay</div></li></ul></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2021/09/30/what_is_promise/"><img class="prev-cover" src="https://cdn.jsdelivr.net/gh/Redrain54/blogimg/data/threeJSsentence.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">Promise学习笔记辣~﻿</div></div></a></div><div class="next-post pull-right"><a href="/2021/07/12/wechat_miniapp4/"><img class="next-cover" src="https://cdn.jsdelivr.net/gh/Redrain54/blogimg/cover/wechat.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">微信小程序学习笔记（4）﻿</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span> 相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2022/01/17/HTTP/" title="HTTP相关内容"><img class="cover" src="https://cdn.jsdelivr.net/gh/Redrain54/blogimg/data/HTTP1.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-01-17</div><div class="title">HTTP相关内容</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%89%8D%E7%BD%AE%E7%9F%A5%E8%AF%86%EF%BC%9A%E8%87%AA%E4%B8%8A%E8%80%8C%E4%B8%8B%E7%9A%84%E5%8D%8F%E8%AE%AE%E5%88%86%E5%B1%82"><span class="toc-number">1.</span> <span class="toc-text">前置知识：自上而下的协议分层</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BA%94%E7%94%A8%E5%B1%82"><span class="toc-number">1.0.1.</span> <span class="toc-text">应用层</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%90%E8%BE%93%E5%B1%82"><span class="toc-number">1.0.2.</span> <span class="toc-text">运输层</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BD%91%E7%BB%9C%E5%B1%82"><span class="toc-number">1.0.3.</span> <span class="toc-text">网络层</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%93%BE%E8%B7%AF%E5%B1%82"><span class="toc-number">1.0.4.</span> <span class="toc-text">链路层</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%89%A9%E7%90%86%E5%B1%82"><span class="toc-number">1.0.5.</span> <span class="toc-text">物理层</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%87%86%E5%A4%87%EF%BC%9ADHCP%E3%80%81UDP%E3%80%81IP%E4%BB%A5%E5%8F%8A%E4%BB%A5%E5%A4%AA%E7%BD%91"><span class="toc-number">2.</span> <span class="toc-text">准备：DHCP、UDP、IP以及以太网</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BB%8D%E5%9C%A8%E5%87%86%E5%A4%87%EF%BC%9ADNS%E5%92%8CARP"><span class="toc-number">3.</span> <span class="toc-text">仍在准备：DNS和ARP</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BB%8D%E5%9C%A8%E5%87%86%E5%A4%87%EF%BC%9A%E5%9F%9F%E5%86%85%E8%B7%AF%E7%94%B1%E9%80%89%E6%8B%A9%E5%88%B0DNS%E6%9C%8D%E5%8A%A1%E5%99%A8"><span class="toc-number">4.</span> <span class="toc-text">仍在准备：域内路由选择到DNS服务器</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Web%E5%AE%A2%E6%88%B7-%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%BA%A4%E4%BA%92%EF%BC%9ATCP%E5%92%8CHTTP"><span class="toc-number">5.</span> <span class="toc-text">Web客户-服务器交互：TCP和HTTP</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%93%8D%E5%BA%94%E6%8A%A5%E6%96%87%E4%B8%AD%E7%9A%84%E7%8A%B6%E6%80%81%E7%A0%81"><span class="toc-number">6.</span> <span class="toc-text">响应报文中的状态码</span></a></li></ol></div></div></div></div></main><footer id="footer" style="background-image: url('https://cdn.jsdelivr.net/gh/Redrain54/blogimg/cover/8.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2021 - 2022 By Redrain</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script>var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',preloader.endLoading())</script><div class="js-pjax"><script>function loadValine () {
+  function initValine () {
+    const valine = new Valine(Object.assign({
+      el: '#vcomment',
+      appId: '',
+      appKey: '',
+      placeholder: 'Please leave your footprints',
+      avatar: 'monsterid',
+      meta: 'nick,mail,link'.split(','),
+      pageSize: '10',
+      lang: 'en',
+      recordIP: false,
+      serverURLs: '',
+      emojiCDN: '',
+      emojiMaps: "",
+      enableQQ: false,
+      path: window.location.pathname,
+      requiredFields: ["nick,mail"],
+      visitor: false
+    }, null))
+  }
+
+  if (typeof Valine === 'function') initValine() 
+  else getScript('https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js').then(initValine)
+}
+
+if ('Valine' === 'Valine' || !false) {
+  if (false) btf.loadComment(document.getElementById('vcomment'),loadValine)
+  else setTimeout(loadValine, 0)
+} else {
+  function loadOtherComment () {
+    loadValine()
+  }
+}</script></div><canvas class="fireworks" mobile="false"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/fireworks.min.js"></script><script defer="defer" id="fluttering_ribbon" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-fluttering-ribbon.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = true;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

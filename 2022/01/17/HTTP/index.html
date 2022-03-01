@@ -1,0 +1,282 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>HTTP相关内容 | Redrain's Blog</title><meta name="keywords" content="HTTP,network protocol"><meta name="author" content="Redrain"><meta name="copyright" content="Redrain"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="详细介绍HTTP协议报文格式、状态码、请求方法">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HTTP相关内容">
+<meta property="og:url" content="http://yoursite.com/2022/01/17/HTTP/index.html">
+<meta property="og:site_name" content="Redrain&#39;s Blog">
+<meta property="og:description" content="详细介绍HTTP协议报文格式、状态码、请求方法">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Redrain54/blogimg/data/HTTP1.jpg">
+<meta property="article:published_time" content="2022-01-16T16:00:00.000Z">
+<meta property="article:modified_time" content="2022-01-17T08:45:33.843Z">
+<meta property="article:author" content="Redrain">
+<meta property="article:tag" content="HTTP">
+<meta property="article:tag" content="network protocol">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/Redrain54/blogimg/data/HTTP1.jpg"><link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/Redrain54/image/rain/redrain.png"><link rel="canonical" href="http://yoursite.com/2022/01/17/HTTP/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"作者: Redrain","link":"链接: ","source":"来源: Redrain's Blog","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'HTTP相关内容',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-01-17 16:45:33'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    })(window)</script><meta name="generator" content="Hexo 5.4.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" src="https://cdn.jsdelivr.net/gh/Redrain54/image/rain/redrain.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">26</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">27</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">15</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://cdn.jsdelivr.net/gh/Redrain54/blogimg/cover/8.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Redrain's Blog</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">HTTP相关内容<a class="post-edit-link" href="https://github.com/Redrain54/Redrain54.github.io/edit/master/source/_posts/HTTP.md" title="编辑" target="_blank"><i class="fas fa-pencil-alt"></i></a></h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-01-16T16:00:00.000Z" title="发表于 2022-01-17 00:00:00">2022-01-17</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-01-17T08:45:33.843Z" title="更新于 2022-01-17 16:45:33">2022-01-17</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/study/">study</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/study/computer-network/">computer network</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">1.7k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>6分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="HTTP相关内容"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h3 id="推荐阅读"><a href="#推荐阅读" class="headerlink" title="推荐阅读"></a>推荐阅读</h3><ul>
+<li><a target="_blank" rel="noopener" href="https://code.tutsplus.com/tutorials/http-the-protocol-every-web-developer-must-know-part-1--net-31177">HTTP: The Protocol Every Web Developer Must Know - Part 1</a></li>
+<li><a target="_blank" rel="noopener" href="https://code.tutsplus.com/tutorials/http-the-protocol-every-web-developer-must-know-part-2--net-31155">HTTP: The Protocol Every Web Developer Must Know - Part 2</a></li>
+</ul>
+<h3 id="HTTP"><a href="#HTTP" class="headerlink" title="HTTP"></a>HTTP</h3><p>HTTP（hypertext transfer protocol）协议【<strong>超文本传输协议</strong>】，协议详细规定了浏览器和万维网服务器之间互相通信的规则</p>
+<h3 id="请求报文"><a href="#请求报文" class="headerlink" title="请求报文"></a>请求报文</h3><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">行	请求类型:GET/POST     路径URL  /s？ie=utf-8   协议版本HTTP/1.1</span><br><span class="line">头  HOST: redrain54.github.io</span><br><span class="line">    Cookie: name=Redrain</span><br><span class="line">	Content-type: application/x-www-form-urlencoded</span><br><span class="line">	Uer-Agent: chrom 83    </span><br><span class="line">空行</span><br><span class="line">体   username=admin&amp;password=admin  (GET时为空，POST时为参数)</span><br></pre></td></tr></table></figure>
+
+<h3 id="响应报文"><a href="#响应报文" class="headerlink" title="响应报文"></a>响应报文</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">行	协议版本：HTTP&#x2F;1.1    响应状态码(status)200   响应字符串(statusText)OK</span><br><span class="line">头	Content-Type: text&#x2F;html;charset&#x3D;utf-8</span><br><span class="line">	 Content-length: 2048</span><br><span class="line">	 Content-encoding: gzip</span><br><span class="line">	 Cache-Control: max-age&#x3D;3600   &#x2F;&#x2F;3600秒之后缓存失效</span><br><span class="line">空行</span><br><span class="line">体    &lt;html&gt;</span><br><span class="line">		&lt;head&gt;</span><br><span class="line">		&lt;&#x2F;head&gt;</span><br><span class="line">		&lt;body&gt;</span><br><span class="line">			&lt;h1&gt;ajax学习&lt;&#x2F;h1&gt;</span><br><span class="line">		&lt;&#x2F;body&gt;</span><br><span class="line">	  &lt;&#x2F;html&gt;</span><br><span class="line">	  (返回的内容)</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>报文详细格式请参阅<code>推荐阅读</code>的文章</p>
+</blockquote>
+<h3 id="HTTP状态码总览-An-Overview-of-HTTP-Status-Codes"><a href="#HTTP状态码总览-An-Overview-of-HTTP-Status-Codes" class="headerlink" title="HTTP状态码总览(An Overview of HTTP Status Codes)"></a>HTTP状态码总览(An Overview of HTTP Status Codes)</h3><div align='center'><image src="https://cdn.jsdelivr.net/gh/Redrain54/blogimg/data/HTTP1.jpg"></div>
+
+<ul>
+<li><h4 id="1××：Informational-Messages-give-some-information-while-the-connection-is-still-in-progress"><a href="#1××：Informational-Messages-give-some-information-while-the-connection-is-still-in-progress" class="headerlink" title="1××：Informational Messages (give some information while the connection is still in progress)"></a>1××：Informational Messages (give some information while the connection is still in progress)</h4><p>以1开头的状态码只是一个临时的，在HTTP/1.1时引入。Server可以发送一个<code>Expect: 100-continue</code>信息，告诉client继续发送剩下的请求，如果已经发送完毕就忽略。HTTP/1.0客户端会忽略这个header。</p>
+</li>
+<li><h4 id="2××：Successful-mean-a-successful-connection-was-made"><a href="#2××：Successful-mean-a-successful-connection-was-made" class="headerlink" title="2××：Successful (mean a successful connection was made)"></a>2××：Successful (mean a successful connection was made)</h4><p>以2开头的状态码告诉client请求已被成功处理。如果是一个<code>GET</code>请求，server会在响应体中包含被请求的资源。</p>
+<ul>
+<li><strong>200 OK：</strong>everything’s okay</li>
+<li><strong>202 Accepted:</strong> 请求已被接受，但响应中可能不包含资源。这对于服务器端的异步处理非常有用。服务器可以选择发送信息进行监控。</li>
+<li><strong>204 No Content:</strong> 响应中没有消息体。</li>
+<li><strong>205 Reset Content:</strong> 让客户端重置其文档视图。</li>
+<li><strong>206 Partial Content:</strong> 指响应只包含部分内容。</li>
+</ul>
+</li>
+<li><h4 id="3××：Redirection（重定位）"><a href="#3××：Redirection（重定位）" class="headerlink" title="3××：Redirection（重定位）"></a>3××：Redirection（重定位）</h4><p>以3开头的状态码表明需要客户端执行额外的操作。最常见的用例是<strong>为了获取资源而跳转到一个不同的URL</strong>。</p>
+<ul>
+<li><p><strong>301 Move Permanently：</strong> 该资源现在位于一个新的URL。</p>
+</li>
+<li><p><strong>303 See Other:</strong> 该资源临时位于一个新的URL。<code>Location</code>响应头包含临时URL。</p>
+</li>
+<li><p><strong>304 Not Modified:</strong> 服务器已经确定资源没有改变，客户端应该使用它的缓存副本。这取决于客户端正在发送<code>ETag</code>(Enttity Tag 实体标签)信息，该信息是内容的哈希值。服务器将其与自己计算的ETag进行比较，以检查是否有修改。</p>
+<blockquote>
+<p>应用场景：浏览器第一次给服务器发送请求后，服务器会在响应头中加上<code>Last-Modified</code>字段（或<code>Etag</code>字段），浏览器接收到后若再次请求，会在请求头中携带<code>If-Modified-Since</code>（或<code>If-None-Match</code>）字段，这个字段的值是服务器传来的最后修改时间。服务器拿到这个字段之后会与该资源最后修改时间比较：</p>
+<ul>
+<li>如果请求头中的值小于最后修改时间，说明是时候更新了。就返回新的资源，跟常规的HTTP请求一样。</li>
+<li>否则返回304，告诉浏览器直接用缓存。</li>
+</ul>
+<p><strong>Last-Modified与ETag对比</strong></p>
+<ol>
+<li>在<code>精准度</code>上，<code>ETag</code>优于<code>Last-Modified</code>。优于 ETag 是按照内容给资源上标识，因此能准确感知资源的变化。而 Last-Modified 就不一样了，它在一些特殊的情况并不能准确感知资源变化，主要有两种情况:<ul>
+<li>编辑了资源文件，但是文件内容并没有更改，这样也会造成缓存失效。</li>
+<li>Last-Modified 能够感知的单位时间是秒，如果文件在 1 秒内改变了多次，那么这时候的 Last-Modified 并没有体现出修改了。</li>
+</ul>
+</li>
+<li>在性能上，<code>Last-Modified</code>优于<code>ETag</code>，也很简单理解，<code>Last-Modified</code>仅仅只是记录一个时间点，而 <code>Etag</code>需要根据文件的具体内容生成哈希值。</li>
+<li>如果两种方式都支持的话，服务器会优先考虑<code>ETag</code>。</li>
+</ol>
+</blockquote>
+</li>
+</ul>
+</li>
+<li><h4 id="4xx-Client-Error-show-there-was-a-client-side-error"><a href="#4xx-Client-Error-show-there-was-a-client-side-error" class="headerlink" title="4xx: Client Error (show there was a client-side error)"></a>4xx: Client Error (show there was a client-side error)</h4><p>当服务器认为客户机出错时，就会使用这些代码，无论是请求无效的资源还是发出错误的请求。这个类中最流行的代码是<strong>404 Not Found</strong>,404表示该资源无效，在服务器上不存在。</p>
+<ul>
+<li><strong>400 Bad Request:</strong> 请求格式不正确。</li>
+<li><strong>401 Unauthorized:</strong> 请求都需要身份验证。客户端可以使用<code>Authorization</code>头重复请求。如果客户端已经包含了<code>Authorization</code>头，则凭据(credentials)是错误的。</li>
+<li><strong>403 Forbidden:</strong> 服务器拒绝访问该资源。</li>
+<li><strong>405 Method Not Allowed:</strong> 请求行中使用的无效HTTP verb，或者服务器不支持该verb。</li>
+<li><strong>409 Conflict:</strong> 服务器无法完成请求，因为客户端试图修改比客户端时间戳更新的资源。冲突主要发生在对资源进行协作编辑期间的<code>PUT</code>请求。</li>
+</ul>
+</li>
+<li><h4 id="5xx-Server-Error-indocate-a-server-side-error-like-a-failed-database-connection-or-the-server-being-down"><a href="#5xx-Server-Error-indocate-a-server-side-error-like-a-failed-database-connection-or-the-server-being-down" class="headerlink" title="5xx: Server Error (indocate a server-side error, like a failed database connection, or the server being down)"></a>5xx: Server Error (indocate a server-side error, like a failed database connection, or the server being down)</h4><p>这类代码用于在处理请求时指示服务器故障。最常用的错误码是<strong>500 Internal Server Error</strong>。</p>
+<ul>
+<li><strong>501 Not Implemented:</strong> 服务器还不支持所请求的功能</li>
+<li><strong>503 Service Unavailable:</strong> 如果服务器上的内部系统失败或服务器超载，就会发生这种情况。通常，服务器甚至不会响应，请求会超时。</li>
+</ul>
+</li>
+</ul>
+<h3 id="请求方法-Verbs-Methods"><a href="#请求方法-Verbs-Methods" class="headerlink" title="请求方法 (Verbs/Methods)"></a>请求方法 (Verbs/Methods)</h3><p>应该在主机上执行的操作是通过HTTP verbs指定的。当然，客户机希望主机执行一些操作。HTTP在一些基础上进行了规范化，这些基础捕获了普遍适用于各种应用程序的要点。(The action that should be performed on the host is specified via HTTP verbs. Of course, there are several actions that a client would like the host to perform. HTTP has formalized on a few that capture the essentials that are universally applicable for all kinds of applications.)</p>
+<ul>
+<li><p><strong>GET: <em>fetch</em> an existing resource.</strong>  URL包含服务器定位和返回资源所需的所有必要信息。</p>
+</li>
+<li><p><strong>POST: create a new resource.</strong> POST请求通常携带一个指定新资源数据的<strong>有效负载(payload)</strong>。（也就是有传参）</p>
+</li>
+<li><p>*<em>PUT: update an existing resource. *</em> 有效负载可能包含资源的更新数据。</p>
+</li>
+<li><p><strong>DELETE: delete an existing resource.</strong></p>
+<blockquote>
+<p><code>PUT</code> and <code>DELETE</code> are sometimes considered specialized versions of the <code>POST</code> verb, and they may be packaged as <code>POST</code> requests with the payload containing the exact action: <em>create</em>, <em>update</em> or <em>delete</em>.</p>
+<p>下面三个不常用，但HTTP同样支持</p>
+</blockquote>
+</li>
+<li><p><strong>HEAD:</strong> 类似于<code>GET</code>，但是没有消息主体。它用于检索特定资源的服务器头，通常通过时间戳检查资源是否发生了更改。</p>
+</li>
+<li><p><strong>TRACE:</strong> 用于检索请求从服务器往返所需的<strong>跳数(the hops)</strong>。每个中间代理或网关将其IP或DNS名称注入<code>Via</code>报头字段。这可以用于诊断目的。</p>
+</li>
+<li><p><strong>OPTIONS:</strong> 用于检索服务器功能。在客户端，可以使用它根据服务器支持的内容来修改请求。</p>
+</li>
+</ul>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a target="_blank" rel="noopener" href="https://redrain54.github.io">Redrain</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a target="_blank" rel="noopener" href="https://redrain54.github.io/2022/01/17/HTTP/">https://redrain54.github.io/2022/01/17/HTTP/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">此文章版權歸Redrain所有，如有轉載，請註明來自原作者</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/HTTP/">HTTP</a><a class="post-meta__tags" href="/tags/network-protocol/">network protocol</a></div><div class="post_share"><div class="social-share" data-image="https://cdn.jsdelivr.net/gh/Redrain54/blogimg/data/HTTP1.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button button--animated"><i class="fas fa-qrcode"></i> 打赏</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/wechat.png" target="_blank"><img class="post-qr-code-img" src="/img/wechat.png" alt="wechat"/></a><div class="post-qr-code-desc">wechat</div></li><li class="reward-item"><a href="/img/alipay.png" target="_blank"><img class="post-qr-code-img" src="/img/alipay.png" alt="alipay"/></a><div class="post-qr-code-desc">alipay</div></li></ul></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2022/01/18/HTML-CSS-JS-part/"><img class="prev-cover" src="https://cdn.jsdelivr.net/gh/Redrain54/blogimg/cover/wz1.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">HTML、CSS、JS部分内容记录﻿</div></div></a></div><div class="next-post pull-right"><a href="/2021/12/06/loving_you_is_like_loving_life/"><img class="next-cover" src="https://cdn.jsdelivr.net/gh/Redrain54/image/some/preview (7).jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">《爱你就像爱生命》节选</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span> 相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2021/09/01/request_for_web/" title="Web页面的请求历程（计算机网络基础知识）﻿"><img class="cover" src="https://cdn.jsdelivr.net/gh/Redrain54/blogimg/cover/cn.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-09-01</div><div class="title">Web页面的请求历程（计算机网络基础知识）﻿</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8E%A8%E8%8D%90%E9%98%85%E8%AF%BB"><span class="toc-number">1.</span> <span class="toc-text">推荐阅读</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#HTTP"><span class="toc-number">2.</span> <span class="toc-text">HTTP</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%B7%E6%B1%82%E6%8A%A5%E6%96%87"><span class="toc-number">3.</span> <span class="toc-text">请求报文</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%93%8D%E5%BA%94%E6%8A%A5%E6%96%87"><span class="toc-number">4.</span> <span class="toc-text">响应报文</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#HTTP%E7%8A%B6%E6%80%81%E7%A0%81%E6%80%BB%E8%A7%88-An-Overview-of-HTTP-Status-Codes"><span class="toc-number">5.</span> <span class="toc-text">HTTP状态码总览(An Overview of HTTP Status Codes)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1%C3%97%C3%97%EF%BC%9AInformational-Messages-give-some-information-while-the-connection-is-still-in-progress"><span class="toc-number">5.1.</span> <span class="toc-text">1××：Informational Messages (give some information while the connection is still in progress)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2%C3%97%C3%97%EF%BC%9ASuccessful-mean-a-successful-connection-was-made"><span class="toc-number">5.2.</span> <span class="toc-text">2××：Successful (mean a successful connection was made)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3%C3%97%C3%97%EF%BC%9ARedirection%EF%BC%88%E9%87%8D%E5%AE%9A%E4%BD%8D%EF%BC%89"><span class="toc-number">5.3.</span> <span class="toc-text">3××：Redirection（重定位）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4xx-Client-Error-show-there-was-a-client-side-error"><span class="toc-number">5.4.</span> <span class="toc-text">4xx: Client Error (show there was a client-side error)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5xx-Server-Error-indocate-a-server-side-error-like-a-failed-database-connection-or-the-server-being-down"><span class="toc-number">5.5.</span> <span class="toc-text">5xx: Server Error (indocate a server-side error, like a failed database connection, or the server being down)</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%B7%E6%B1%82%E6%96%B9%E6%B3%95-Verbs-Methods"><span class="toc-number">6.</span> <span class="toc-text">请求方法 (Verbs&#x2F;Methods)</span></a></li></ol></div></div></div></div></main><footer id="footer" style="background-image: url('https://cdn.jsdelivr.net/gh/Redrain54/blogimg/cover/8.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2021 - 2022 By Redrain</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script>var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',preloader.endLoading())</script><div class="js-pjax"><script>function loadValine () {
+  function initValine () {
+    const valine = new Valine(Object.assign({
+      el: '#vcomment',
+      appId: '',
+      appKey: '',
+      placeholder: 'Please leave your footprints',
+      avatar: 'monsterid',
+      meta: 'nick,mail,link'.split(','),
+      pageSize: '10',
+      lang: 'en',
+      recordIP: false,
+      serverURLs: '',
+      emojiCDN: '',
+      emojiMaps: "",
+      enableQQ: false,
+      path: window.location.pathname,
+      requiredFields: ["nick,mail"],
+      visitor: false
+    }, null))
+  }
+
+  if (typeof Valine === 'function') initValine() 
+  else getScript('https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js').then(initValine)
+}
+
+if ('Valine' === 'Valine' || !false) {
+  if (false) btf.loadComment(document.getElementById('vcomment'),loadValine)
+  else setTimeout(loadValine, 0)
+} else {
+  function loadOtherComment () {
+    loadValine()
+  }
+}</script></div><canvas class="fireworks" mobile="false"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/fireworks.min.js"></script><script defer="defer" id="fluttering_ribbon" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-fluttering-ribbon.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = true;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
